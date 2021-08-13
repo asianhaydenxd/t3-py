@@ -8,6 +8,12 @@ class Cell(Enum):
 
 class Board:
     def __init__(self, board: list=[[Cell.N for _ in range(3)] for _ in range(3)]):
+        if len(set(map(len, board))) != 1:
+            raise ValueError("board rows cannot have varying lengths")
+        
+        if len(board) != len(board[0]):
+            raise ValueError("board must have equal amounts of rows and columns")
+            
         self.board = board
     
     def __str__(self) -> str:
