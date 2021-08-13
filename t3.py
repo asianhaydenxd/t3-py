@@ -25,14 +25,19 @@ class Board:
             raise ValueError("board must have equal amounts of rows and columns")
     
     def place(self, player: Cell, position: tuple):
-        if type(player) != Cell:
-            raise TypeError("specified cell type is not of type Cell")
-        
-        if type(position) != tuple:
-            raise TypeError(f"cannot determine coordinates from type {type(position)}")
+        self.raise_if_not_cell(player)
+        self.raise_if_not_tuple(position)
 
         position_x, position_y = position
         self.board[position_y][position_x] = player
+    
+    def raise_if_not_cell(self, cell):
+        if type(cell) != Cell:
+            raise TypeError("specified cell type is not of type Cell")
+    
+    def raise_if_not_tuple(self, _tuple):
+        if type(_tuple) != tuple:
+            raise TypeError(f"cannot determine coordinates from type {type(_tuple).__name__}")
     
     def get_winner(self) -> Cell:
         for board in [self.board, np.transpose(self.board)]:
