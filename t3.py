@@ -10,16 +10,17 @@ class Board:
     def __init__(self, board: list=[[Cell.N for _ in range(3)] for _ in range(3)]):
         self.raise_if_rows_uneven(board)
         self.raise_if_not_square(board)
+        
+        self.str = self.get_string(board)
 
-        self.str = self.get_string()
         self.board = board
     
     def __str__(self) -> str:
         return self.str
     
-    def get_string(self):
+    def get_string(self, board):
         try:
-            return "\n".join([" ".join([cell.value for cell in row]) for row in self.board])
+            return "\n".join([" ".join([cell.value for cell in row]) for row in board])
         except AttributeError:
             raise TypeError("board cannot contain non-Cell type values")
     
