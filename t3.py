@@ -8,16 +8,21 @@ class Cell(Enum):
 
 class Board:
     def __init__(self, board: list=[[Cell.N for _ in range(3)] for _ in range(3)]):
-        if len(set(map(len, board))) != 1:
-            raise ValueError("board rows cannot have varying lengths")
-        
-        if len(board) != len(board[0]):
-            raise ValueError("board must have equal amounts of rows and columns")
-            
+        self.raise_if_rows_uneven(board)
+        self.raise_if_not_square(board)
+
         self.board = board
     
     def __str__(self) -> str:
         return "\n".join([" ".join([cell.value for cell in row]) for row in self.board])
+
+    def raise_if_rows_uneven(self, board):
+        if len(set(map(len, board))) != 1:
+            raise ValueError("board rows cannot have varying lengths")
+    
+    def raise_if_not_square(self, board):
+        if len(board) != len(board[0]):
+            raise ValueError("board must have equal amounts of rows and columns")
     
     def place(self, player: Cell, position: tuple):
         if type(player) != Cell:
