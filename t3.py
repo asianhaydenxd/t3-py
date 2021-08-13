@@ -19,12 +19,24 @@ class Board:
     
     def get_winner(self) -> Cell:
         for board in [self.board, np.transpose(self.board)]:
-            for row in board:
-                if len(set(row)) == 1:
-                    return row[0]
+            result = self.check_rows(board)
+            if result != Cell.N:
+                return result
+                
+        return self.check_diagonals()
 
+    def check_rows(self, board) -> Cell:
+        for row in board:
+            if len(set(row)) == 1:
+                return row[0]
+
+        return Cell.N
+
+    def check_diagonals(self):
         if len(set([self.board[i][i] for i in range(len(self.board))])) == 1:
             return self.board[0][0]
+
         if len(set([self.board[i][-1-i] for i in range(len(self.board))])) == 1:
             return self.board[0][-1]
+
         return Cell.N
