@@ -14,6 +14,12 @@ class Board:
         return "\n".join([" ".join([cell.value for cell in row]) for row in self.board])
     
     def place(self, player: Cell, position: tuple):
+        if type(player) != Cell:
+            raise TypeError("specified cell type is not of type Cell")
+        
+        if type(position) != tuple:
+            raise TypeError(f"cannot determine coordinates from type {type(position)}")
+
         position_x, position_y = position
         self.board[position_y][position_x] = player
     
