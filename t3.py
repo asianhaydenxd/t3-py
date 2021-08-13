@@ -22,10 +22,10 @@ class Board:
             result = self.check_rows(board)
             if result != Cell.N:
                 return result
-                
+
         return self.check_diagonals()
 
-    def check_rows(self, board) -> Cell:
+    def check_rows(self, board: list) -> Cell:
         for row in board:
             if len(set(row)) == 1:
                 return row[0]
