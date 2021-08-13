@@ -32,7 +32,7 @@ class Board:
 
         return Cell.N
 
-    def check_diagonals(self):
+    def check_diagonals(self) -> Cell:
         if len(set([self.board[i][i] for i in range(len(self.board))])) == 1:
             return self.board[0][0]
 
