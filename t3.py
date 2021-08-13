@@ -33,10 +33,10 @@ class Board:
         return Cell.N
 
     def check_diagonals(self) -> Cell:
-        if len(set([self.board[i][i] for i in range(len(self.board))])) == 1:
+        if len(set([row[index] for index, row in enumerate(self.board)])) == 1:
             return self.board[0][0]
-
-        if len(set([self.board[i][-1-i] for i in range(len(self.board))])) == 1:
+        
+        if len(set([row[-1-index] for index, row in enumerate(self.board)])) == 1:
             return self.board[0][-1]
 
         return Cell.N
