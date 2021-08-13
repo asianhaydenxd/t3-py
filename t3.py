@@ -16,6 +16,7 @@ class Board:
         self.board = board
     
     def __str__(self) -> str:
+        self.str = self.get_string(self.board)
         return self.str
     
     def get_string(self, board):
