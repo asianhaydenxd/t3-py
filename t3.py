@@ -16,3 +16,7 @@ class Board:
                 string += f"{x.value} "
             string += "\n"
         return string
+    
+    def place(self, player: Cell, position: tuple):
+        position_x, position_y = position
+        self.board[position_y][position_x] = player
