@@ -12,9 +12,7 @@ class Board:
     def __str__(self) -> str:
         string = ""
         for y in self.board:
-            for x in y:
-                string += f"{x.value} "
-            string += "\n"
+            string += f"{' '.join(map(lambda k: k.value, y))}\n"
         return string
     
     def place(self, player: Cell, position: tuple):
