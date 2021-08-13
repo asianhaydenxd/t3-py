@@ -10,10 +10,7 @@ class Board:
         self.board = board
     
     def __str__(self) -> str:
-        string = ""
-        for y in self.board:
-            string += f"{' '.join(map(lambda k: k.value, y))}\n"
-        return string
+        return "\n".join([" ".join([cell.value for cell in row]) for row in self.board])
     
     def place(self, player: Cell, position: tuple):
         position_x, position_y = position
