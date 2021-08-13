@@ -11,11 +11,18 @@ class Board:
         self.raise_if_rows_uneven(board)
         self.raise_if_not_square(board)
 
+        self.str = self.get_string()
         self.board = board
     
     def __str__(self) -> str:
-        return "\n".join([" ".join([cell.value for cell in row]) for row in self.board])
-
+        return self.str
+    
+    def get_string(self):
+        try:
+            return "\n".join([" ".join([cell.value for cell in row]) for row in self.board])
+        except AttributeError:
+            raise TypeError("board cannot contain non-Cell type values")
+    
     def raise_if_rows_uneven(self, board):
         if len(set(map(len, board))) != 1:
             raise ValueError("board rows cannot have varying lengths")
