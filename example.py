@@ -1,8 +1,7 @@
 import t3
 
 def get_tuple_from_string(coords: str):
-    keys = coords.split()
-    if len(keys) != 2:
+    if len(keys := coords.split()) != 2:
         raise ValueError(f"input takes 2 arguments but {len(keys)} were given")
     
     try:
@@ -20,13 +19,11 @@ if __name__ == "__main__":
     while True:
         print(f"\n{board}")
 
-        winner = board.get_winner()
-        if winner in [t3.Cell.X, t3.Cell.O]:
+        if (winner := board.get_winner()) in [t3.Cell.X, t3.Cell.O]:
             print(f"\n{winner.value} wins")
             break
 
-        position = input(f"{turn.value} > ")
-        if position == "end":
+        if (position := input(f"{turn.value} > ")) == "end":
             break
 
         try:
