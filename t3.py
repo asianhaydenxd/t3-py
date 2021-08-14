@@ -1,5 +1,4 @@
 from enum import Enum
-import numpy as np
 
 class Cell(Enum):
     X = "X"
@@ -49,11 +48,14 @@ class Board:
             raise TypeError(f"cannot determine coordinates from type {type(_tuple).__name__}")
     
     def get_winner(self) -> Cell:
-        for board in [self.board, np.transpose(self.board)]:
+        for board in [self.board, self.transpose_board()]:
             if (result := self.check_rows(board)) != Cell.N:
                 return result
 
         return self.check_diagonals()
+    
+    def transpose_board(self) -> list:
+        return [[row[i] for row in self.board] for i in range(len(self.board[0]))]
 
     def check_rows(self, board: list) -> Cell:
         for row in board:
