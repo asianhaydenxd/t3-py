@@ -50,8 +50,7 @@ class Board:
     
     def get_winner(self) -> Cell:
         for board in [self.board, np.transpose(self.board)]:
-            result = self.check_rows(board)
-            if result != Cell.N:
+            if (result := self.check_rows(board)) != Cell.N:
                 return result
 
         return self.check_diagonals()
