@@ -18,7 +18,7 @@ if __name__ == "__main__":
     while True:
         print(f"\n{board}")
 
-        if (winner := board.get_winner()) in board.playercells:
+        if winner := board.get_winner():
             print(f"\n{winner} wins")
             break
 

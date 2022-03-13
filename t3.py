@@ -33,12 +33,15 @@ class Board:
         if self._turn_number >= len(self.playercells): self._turn_number = 0
         return self.get_turn()
     
-    def get_winner(self) -> Cell:
+    def get_winner(self) -> Union[Cell, None]:
         for board in [self.board, self.transpose_board()]:
             if (result := self.check_rows(board)) != self.emptycell:
                 return result
 
-        return self.check_diagonals()
+        if (result := self.check_diagonals()) != self.emptycell:
+            return self.check_diagonals()
+        
+        return None
     
     def transpose_board(self) -> list:
         return [[row[i] for row in self.board] for i in range(len(self.board[0]))]
