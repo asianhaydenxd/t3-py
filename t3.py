@@ -6,9 +6,9 @@ class Cell(Enum):
     N = "•"
 
 class Board:
-    def __init__(self, board: list=[[Cell.N for _ in range(3)] for _ in range(3)]):
-        self.raise_if_rows_uneven(board)
-        self.raise_if_not_square(board)
+    def __init__(self, board: list = [[Cell.N for _ in range(3)] for _ in range(3)]):
+        if len(set(map(len, board))) != 1: raise ValueError("board rows cannot have varying lengths")
+        if len(board) != len(board[0]): raise ValueError("board must have equal amounts of rows and columns")
         
         self.str = self.get_string(board)
 
@@ -23,15 +23,7 @@ class Board:
             return "\n".join([" ".join([cell.value for cell in row]) for row in board])
         except AttributeError:
             raise TypeError("board cannot contain non-Cell type values")
-    
-    def raise_if_rows_uneven(self, board):
-        if len(set(map(len, board))) != 1:
-            raise ValueError("board rows cannot have varying lengths")
-    
-    def raise_if_not_square(self, board):
-        if len(board) != len(board[0]):
-            raise ValueError("board must have equal amounts of rows and columns")
-    
+        
     def place(self, player: Cell, position: tuple):
         self.raise_if_not_cell(player)
         self.raise_if_not_tuple(position)
