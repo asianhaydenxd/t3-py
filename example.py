@@ -12,7 +12,7 @@ def get_coords_as_ints(coords: str):
     
     return board_x, board_y
 
-if __name__ == "__main__":
+def main():
     board = t3.Board()
 
     while True:
@@ -33,3 +33,5 @@ if __name__ == "__main__":
             continue
 
         board.iterate_turn()
+
+if __name__ == "__main__": main()
