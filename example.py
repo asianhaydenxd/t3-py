@@ -1,4 +1,4 @@
-import t3
+import t3, os
 
 def get_coords_as_ints(coords: str):
     if len(keys := coords.split()) != 2:
@@ -21,9 +21,10 @@ def main():
         if winner := board.get_winner():
             print(f"\n{winner} wins")
             break
+        
+        position = input(f"{board.get_turn()} > ")
 
-        if (position := input(f"{board.get_turn()} > ")) == "end":
-            break
+        if position == "q": break
 
         try:
             x, y = get_coords_as_ints(position)
