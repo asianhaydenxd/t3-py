@@ -27,7 +27,8 @@ if __name__ == "__main__":
             break
 
         try:
-            board.place(turn, get_tuple_from_string(position))
+            x, y = get_tuple_from_string(position)
+            board.place(turn, x, y)
         except (ValueError, IndexError) as e:
             print(f"Invalid syntax: {e}")
             continue

@@ -24,20 +24,10 @@ class Board:
         except AttributeError:
             raise TypeError("board cannot contain non-Cell type values")
         
-    def place(self, player: Cell, position: tuple):
-        self.raise_if_not_cell(player)
-        self.raise_if_not_tuple(position)
+    def place(self, player: Cell, position_x: int, position_y: int):
+        if type(cell) != Cell: raise TypeError("specified cell type is not of type Cell")
 
-        position_x, position_y = position
         self.board[position_y][position_x] = player
-    
-    def raise_if_not_cell(self, cell):
-        if type(cell) != Cell:
-            raise TypeError("specified cell type is not of type Cell")
-    
-    def raise_if_not_tuple(self, _tuple):
-        if type(_tuple) != tuple:
-            raise TypeError(f"cannot determine coordinates from type {type(_tuple).__name__}")
     
     def get_winner(self) -> Cell:
         for board in [self.board, self.transpose_board()]:
