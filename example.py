@@ -14,7 +14,6 @@ def get_tuple_from_string(coords: str):
 
 if __name__ == "__main__":
     board = t3.Board()
-    turn = 0
 
     while True:
         print(f"\n{board}")
@@ -23,14 +22,14 @@ if __name__ == "__main__":
             print(f"\n{winner} wins")
             break
 
-        if (position := input(f"{board.playercells[turn]} > ")) == "end":
+        if (position := input(f"{board.get_turn()} > ")) == "end":
             break
 
         try:
             x, y = get_tuple_from_string(position)
-            board.place(board.playercells[turn], x, y)
+            board.place(board.get_turn(), x, y)
         except (ValueError, IndexError) as e:
             print(f"Invalid syntax: {e}")
             continue
 
-        turn = 0 if turn == 1 else 1
+        board.iterate_turn()

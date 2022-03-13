@@ -13,6 +13,8 @@ class Board:
         self.playercells = [Cell(char) for char in playerchars]
 
         self.board = [[self.emptycell for _ in range(width)] for _ in range(width)]
+
+        self._turn_number = 0
     
     def __str__(self) -> str:
         return "\n".join([" ".join([cell.__str__() for cell in row]) for row in self.board])
@@ -21,6 +23,14 @@ class Board:
         if playercell not in self.playercells: raise TypeError("specified cell is not in board's player cells")
 
         self.board[position_y][position_x] = playercell
+
+    def get_turn(self):
+        return self.playercells[self._turn_number]
+
+    def iterate_turn(self):
+        self._turn_number += 1
+        if self._turn_number >= len(self.playercells): self._turn_number = 0
+        return self.get_turn()
     
     def get_winner(self) -> Cell:
         for board in [self.board, self.transpose_board()]:
