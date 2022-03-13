@@ -16,6 +16,8 @@ def main():
     board = t3.Board()
 
     while True:
+        os.system('cls' if os.name in ('nt', 'dos') else 'clear')
+
         print(f"\n{board}")
 
         if winner := board.get_winner():

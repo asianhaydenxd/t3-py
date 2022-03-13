@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Union
 
 class Cell:
     # To store different cell types as cell objects rather than relying on using different characters
