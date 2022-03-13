@@ -9,20 +9,11 @@ class Board:
     def __init__(self, board: list = [[Cell.N for _ in range(3)] for _ in range(3)]):
         if len(set(map(len, board))) != 1: raise ValueError("board rows cannot have varying lengths")
         if len(board) != len(board[0]): raise ValueError("board must have equal amounts of rows and columns")
-        
-        self.str = self.get_string(board)
 
         self.board = board
     
     def __str__(self) -> str:
-        self.str = self.get_string(self.board)
-        return self.str
-    
-    def get_string(self, board):
-        try:
-            return "\n".join([" ".join([cell.value for cell in row]) for row in board])
-        except AttributeError:
-            raise TypeError("board cannot contain non-Cell type values")
+        return "\n".join([" ".join([cell.value for cell in row]) for row in board])
         
     def place(self, player: Cell, position_x: int, position_y: int):
         if type(cell) != Cell: raise TypeError("specified cell type is not of type Cell")
