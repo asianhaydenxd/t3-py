@@ -1,6 +1,6 @@
 import t3
 
-def get_tuple_from_string(coords: str):
+def get_coords_as_ints(coords: str):
     if len(keys := coords.split()) != 2:
         raise ValueError(f"input takes 2 arguments but {len(keys)} were given")
     
@@ -26,7 +26,7 @@ if __name__ == "__main__":
             break
 
         try:
-            x, y = get_tuple_from_string(position)
+            x, y = get_coords_as_ints(position)
             board.place(x, y)
         except (ValueError, IndexError) as e:
             print(f"Invalid syntax: {e}")
