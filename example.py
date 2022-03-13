@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
         try:
             x, y = get_tuple_from_string(position)
-            board.place(board.get_turn(), x, y)
+            board.place(x, y)
         except (ValueError, IndexError) as e:
             print(f"Invalid syntax: {e}")
             continue

@@ -19,10 +19,11 @@ class Board:
     def __str__(self) -> str:
         return "\n".join([" ".join([cell.__str__() for cell in row]) for row in self.board])
         
-    def place(self, playercell: Cell, position_x: int, position_y: int):
+    def place(self, x_pos: int, y_pos: int, playercell: Cell = None):
+        if playercell == None: playercell = self.get_turn()
         if playercell not in self.playercells: raise TypeError("specified cell is not in board's player cells")
 
-        self.board[position_y][position_x] = playercell
+        self.board[y_pos][x_pos] = playercell
 
     def get_turn(self):
         return self.playercells[self._turn_number]
